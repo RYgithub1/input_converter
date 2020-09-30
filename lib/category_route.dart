@@ -28,7 +28,7 @@ class _CategoryRouteState extends State<CategoryRoute> {
     'Energy',
     'Currency',
   ];
-  static const _baseColors = <ColorSwatch>[
+  static const _baseColors = <ColorSwatch>[   /// [ColorSwatch]
     ColorSwatch(0xFF6AB7A8, {
       'highlight': Color(0xFF6AB7A8),
       'splash': Color(0xFF0ABC9B),
@@ -64,25 +64,20 @@ class _CategoryRouteState extends State<CategoryRoute> {
     }),
   ];
 
+
   /// ++++[initState]++++++++++++++++++++++++++++++++++++++++++++++
   @override
   void initState() {
     super.initState();
     for (var i = 0; i < _categoryNames.length; i++) {
-      _categories.add(Category(
+      /// [category_route.dart -> category.dart]
+      _categories.add(Category(   // _categories配列に、name/color/icon/unit、を一組ずつ格納
         name: _categoryNames[i],
         color: _baseColors[i],
         iconLocation: Icons.cake,
         units: _retrieveUnitList(_categoryNames[i]),
       ));
     }
-  }
-
-  Widget _buildCategoryWidgets() {
-    return ListView.builder(
-      itemCount: _categories.length,
-      itemBuilder: (BuildContext context, int index) => _categories[index],
-    );
   }
 
   /// Returns a list of mock [Unit]s.
@@ -100,28 +95,27 @@ class _CategoryRouteState extends State<CategoryRoute> {
   /// +++[build]+++++++++++++++++++++++++++++++++++++++++++++++
   @override
   Widget build(BuildContext context) {
-    final listView = Container(
-      color: _backgroundColor,
-      padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: _buildCategoryWidgets(),
-    );
-
-    final appBar = AppBar(
-      elevation: 0.0,
-      title: Text(
-        'Unit Converter',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 30.0,
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        title: Text(
+          'Mrs. Converter',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30.0,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: _backgroundColor,
+      ),
+      body: Container(
+        color: _backgroundColor,
+        padding: EdgeInsets.symmetric(horizontal: 8.0),
+        child: ListView.builder(
+          itemCount: _categories.length,
+          itemBuilder: (BuildContext context, int index) => _categories[index],
         ),
       ),
-      centerTitle: true,
-      backgroundColor: _backgroundColor,
-    );
-
-    return Scaffold(
-      appBar: appBar,
-      body: listView,
     );
   }
 }

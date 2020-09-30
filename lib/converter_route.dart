@@ -7,18 +7,15 @@ const _padding = EdgeInsets.all(16.0);
 
 
 
-/// [ConverterRoute] = ConverterScreen : retrieve one and another [Unit]s.
+/// [ConverterRoute] is ConverterScreen : retrieve one and another [Unit]s.
 class ConverterRoute extends StatefulWidget {
-
   final Color color;  /// Color for [Category].
   final List<Unit> units;  /// Units for [Category].
-
   const ConverterRoute({  /// [not be null]
     @required this.color,
     @required this.units,
   })  : assert(color != null),
         assert(units != null);
-
   @override
   _ConverterRouteState createState() => _ConverterRouteState();
 }
@@ -73,11 +70,11 @@ class _ConverterRouteState extends State<ConverterRoute> {
           children: <Widget>[
             Text(
               unit.name,
-              style: Theme.of(context).textTheme.headline,
+              style: Theme.of(context).textTheme.headline5,
             ),
             Text(
               'Conversion: ${unit.conversion}',
-              style: Theme.of(context).textTheme.subhead,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ],
         ),

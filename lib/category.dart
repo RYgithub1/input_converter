@@ -10,15 +10,14 @@ final _borderRadius = BorderRadius.circular(_rowHeight / 2);
 
 
 
-/// custom [Category] widget.
+/// [category_route.dart -> category.dart]:custom [Category] widget.
 class Category extends StatelessWidget {
-
+  // 受け取るため
   final String name;
   final ColorSwatch color;
   final IconData iconLocation;
   final List<Unit> units;
-
-  /// [Category] for 他ページから受け取る
+  // 受け取る
   const Category({
     Key key,
     @required this.name,
@@ -31,30 +30,6 @@ class Category extends StatelessWidget {
         assert(units != null),
         super(key: key);
 
-  /// Navigates to [ConverterRoute]
-  void _navigateToConverter(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute<Null>(
-      builder: (BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            elevation: 1.0,
-            title: Text(
-              name,
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            centerTitle: true,
-            backgroundColor: color,
-          ),
-          body: ConverterRoute(
-            color: color,
-            units: units,
-          ),
-          // This prevents the attempt to resize the screen, when the keyboard is opened.
-          resizeToAvoidBottomPadding: false,
-        );
-      },
-    ));
-  }
 
   /// [build] ++++++++++++++++++++++++++++++++++++++++++++++++
   @override
@@ -86,7 +61,7 @@ class Category extends StatelessWidget {
                   child: Text(
                     name,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
               ],
@@ -95,5 +70,32 @@ class Category extends StatelessWidget {
         ),
       ),
     );
+  }
+
+
+  /// ++++[sub]+++++++++++++++++++++++++++++++++++
+  /// Navigates to [ConverterRoute]
+  void _navigateToConverter(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute<Null>(
+      builder: (BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            elevation: 1.0,
+            title: Text(
+              name,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            centerTitle: true,
+            backgroundColor: color,
+          ),
+          body: ConverterRoute(  /// from[Category.dart]to[ConverterRoute.dart]
+            color: color,
+            units: units,
+          ),
+          // This prevents the attempt to resize the screen, when the keyboard is opened.
+          resizeToAvoidBottomPadding: false,
+        );
+      },
+    ));
   }
 }
