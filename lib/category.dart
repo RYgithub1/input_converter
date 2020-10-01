@@ -10,7 +10,7 @@ final _borderRadius = BorderRadius.circular(_rowHeight / 2);
 
 
 
-/// [category_route.dart -> category.dart]:custom [Category] widget.
+/// from[category_route.dart]to[category.dart] ... custom [Category] widget.
 class Category extends StatelessWidget {
   // 受け取るため
   final String name;
@@ -93,7 +93,7 @@ class Category extends StatelessWidget {
             units: units,
           ),
           // This prevents the attempt to resize the screen, when the keyboard is opened.
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomPadding: false,  // beat tigar
         );
       },
     ));
