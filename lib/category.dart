@@ -14,18 +14,18 @@ final _borderRadius = BorderRadius.circular(_rowHeight / 2);
 class Category extends StatelessWidget {
   // 受け取るため
   final String name;
-  final ColorSwatch color;
+  final ColorSwatch color;  /// to pass [ColorSwatch]
   final IconData iconLocation;
   final List<Unit> units;
   // 受け取る
   const Category({
     Key key,
     @required this.name,
-    @required this.color,
+    @required this.color,  /// to pass [ColorSwatch]
     @required this.iconLocation,
     @required this.units,
   })  : assert(name != null),
-        assert(color != null),
+        assert(color != null),  /// to pass [ColorSwatch]
         assert(iconLocation != null),
         assert(units != null),
         super(key: key);
@@ -40,9 +40,12 @@ class Category extends StatelessWidget {
         height: _rowHeight,
         child: InkWell(
           borderRadius: _borderRadius,
-          // TODO: Use the highlight and splash colors from the ColorSwatch
-          highlightColor: color,
-          splashColor: color,
+          // highlightColor: color,
+          // splashColor: color,
+          // splashColor: widget.color[""],  // error if "widget."
+          highlightColor: color["highlight"], /// to pass [ColorSwatch]
+          splashColor: color["splash"],/// to pass [ColorSwatch]
+
           // onTap: () {_navigateToConverter(context);},  // [1]どんな場合も可能
           onTap: () => _navigateToConverter(context),  // [2]1行の場合可能
           child: Padding(
@@ -92,7 +95,7 @@ class Category extends StatelessWidget {
             color: color,
             units: units,
           ),
-          // This prevents the attempt to resize the screen, when the keyboard is opened.
+          // prevents to resize screen, when the keyboard is opened.
           resizeToAvoidBottomPadding: false,  // beat tigar
         );
       },
